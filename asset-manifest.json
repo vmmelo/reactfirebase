@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reactfirebase/static/css/main.34de6062.chunk.css",
+    "main.js": "/reactfirebase/static/js/main.d0cad629.chunk.js",
+    "main.js.map": "/reactfirebase/static/js/main.d0cad629.chunk.js.map",
+    "runtime~main.js": "/reactfirebase/static/js/runtime~main.60f1948e.js",
+    "runtime~main.js.map": "/reactfirebase/static/js/runtime~main.60f1948e.js.map",
+    "static/js/2.866cee8e.chunk.js": "/reactfirebase/static/js/2.866cee8e.chunk.js",
+    "static/js/2.866cee8e.chunk.js.map": "/reactfirebase/static/js/2.866cee8e.chunk.js.map",
+    "index.html": "/reactfirebase/index.html",
+    "precache-manifest.72f2c2509ca96eb7b38b5ae8f32e2453.js": "/reactfirebase/precache-manifest.72f2c2509ca96eb7b38b5ae8f32e2453.js",
+    "service-worker.js": "/reactfirebase/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/reactfirebase/static/css/main.34de6062.chunk.css.map"
+  }
+}
