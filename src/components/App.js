@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import * as firebase from 'firebase'
 import TextField from '@material-ui/core/TextField';
+import WebcamComponent from './WebcamComponent'
+import SoundComponent from './SoundComponent'
+import YoutubeComponent from "./YoutubeComponent";
 
 export default class App extends Component {
 
@@ -28,17 +31,22 @@ export default class App extends Component {
 
   render() {
     return (
-        <form>
-          <TextField
-              placeholder="Loading..."
-              multiline={true}
-              rows={20}
-              rowsMax={4}
-              fullWidth
-              value={this.state.text}
-              onChange={this.handleChange}
-          />
-        </form>
+        <div className="content">
+          <form>
+            <TextField
+                placeholder="Loading..."
+                multiline={true}
+                rows={20}
+                rowsMax={4}
+                fullWidth
+                value={this.state.text}
+                onChange={this.handleChange}
+            />
+          </form>
+          <WebcamComponent/>
+          <SoundComponent/>
+          <YoutubeComponent/>
+        </div>
     );
   }
 }
