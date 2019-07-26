@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Webcam from "react-webcam";
 import * as firebase from 'firebase'
+import Button from '@material-ui/core/Button'
 
 class WebcamComponent extends Component {
 
@@ -65,7 +66,7 @@ class WebcamComponent extends Component {
         };
 
         return (
-            <div>
+            <div style={{float: 'left'}}>
                 <Webcam
                     audio={false}
                     ref={this.setRef}
@@ -73,13 +74,15 @@ class WebcamComponent extends Component {
                     videoConstraints={videoConstraints}
                     style={{float: 'left'}}
                 />
-                <button onClick={this.capture} style={{float: 'left'}}>Capture photo</button>
+                <p><Button onClick={this.capture} style={{float: 'left', marginBottom: '20px'}}
+                           variant="contained" color="primary">Capture photo</Button></p>
                 <div style={{display: this.state.loading ? 'none' : 'block',float: 'left' }}>
                     <img
                         src={this.state.savedImages[this.state.imageIndex]}
                         title='photo'
                     />
-                    <p><button onClick={this.nextPhoto} style={{float: 'left'}}>Random photo</button></p>
+                    <p><Button onClick={this.nextPhoto} style={{float: 'left', marginBottom: '20px'}}
+                               variant="contained" color="primary">Random photo</Button></p>
                 </div>
             </div>
         );

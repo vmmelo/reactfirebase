@@ -5,7 +5,7 @@ class SoundComponent extends Component {
 
     render() {
         return (
-            <div>
+            <div className='row'>
                 <audio src={mp3_file} controls autoPlay/>
             </div>
         );

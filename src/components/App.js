@@ -30,23 +30,31 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-        <div className="content">
-          <form>
-            <TextField
-                placeholder="Loading..."
-                multiline={true}
-                rows={20}
-                rowsMax={4}
-                fullWidth
-                value={this.state.text}
-                onChange={this.handleChange}
-            />
-          </form>
-          <WebcamComponent/>
-          <SoundComponent/>
-          <YoutubeComponent/>
-        </div>
-    );
+      return (
+          <div className="content">
+              <div className='row'>
+                  <form>
+                      <TextField
+                          placeholder="Loading..."
+                          multiline={true}
+                          rows={20}
+                          rowsMax={4}
+                          fullWidth
+                          value={this.state.text}
+                          onChange={this.handleChange}
+                      />
+                  </form>
+              </div>
+              <div className='row marginleft'>
+                  <WebcamComponent/>
+              </div>
+              <div className='row marginleft'>
+                  <YoutubeComponent/>
+              </div>
+              <div className='sound marginleft'>
+                  <SoundComponent/>
+              </div>
+          </div>
+      );
   }
 }
