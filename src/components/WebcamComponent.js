@@ -15,7 +15,7 @@ class WebcamComponent extends Component {
 
     componentDidMount() {
         let savedImages = [];
-        this.db.collection("photos").get().then((querySnapshot) => {
+        this.db.collection("photos").orderBy('created').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 savedImages.push(doc.data()['image'])
             });
@@ -32,29 +32,36 @@ class WebcamComponent extends Component {
 
     capture = () => {
         const imageSrc = this.webcam.getScreenshot();
-        let savedImages = [];
+        const savedImages = [];
+        const today = new Date();
+        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         this.db.collection('photos').add({
             image: imageSrc,
+            created: date + ' ' + time
         });
-        this.db.collection("photos").get().then((querySnapshot) => {
+        this.db.collection("photos").orderBy('created').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 savedImages.push(doc.data()['image'])
             });
-            this.setState((state) => {
-            console.log(savedImages)
-            console.log(savedImages.length-1)
-                return {
-                    savedImages: savedImages,
-                    imageIndex: savedImages.length-1
-                }
+            this.setState({
+                savedImages: savedImages,
+                imageIndex: savedImages.length - 1
             });
         });
     };
 
     nextPhoto = () => {
         this.setState((state) => {
-            let randomNum = Math.floor((Math.random() * state.savedImages.length - 1) + 1)
-            return {imageIndex: randomNum};
+            let index = state.imageIndex + 1 <= state.savedImages.length - 1 ? state.imageIndex + 1 : 0;
+            return {imageIndex: index};
+        });
+    };
+
+    prevPhoto = () => {
+        this.setState((state) => {
+            let index = state.imageIndex - 1 >= 0 ? state.imageIndex - 1 : state.savedImages.length - 1;
+            return {imageIndex: index};
         });
     };
 
@@ -77,12 +84,14 @@ class WebcamComponent extends Component {
                 <p><Button onClick={this.capture} style={{float: 'left', marginBottom: '20px'}}
                            variant="contained" color="primary">Capture photo</Button></p>
                 <div style={{display: this.state.loading ? 'none' : 'block',float: 'left' }}>
+                    <p><Button onClick={this.prevPhoto} style={{float: 'left', marginBottom: '20px', marginLeft: '5px'}}
+                               variant="contained" color="primary">Prev photo</Button></p>
+                    <p><Button onClick={this.nextPhoto} style={{float: 'left', marginBottom: '20px'}}
+                               variant="contained" color="primary">Next photo</Button></p>
                     <img
                         src={this.state.savedImages[this.state.imageIndex]}
                         title='photo'
-                    />
-                    <p><Button onClick={this.nextPhoto} style={{float: 'left', marginBottom: '20px'}}
-                               variant="contained" color="primary">Random photo</Button></p>
+                     alt='photo'/>
                 </div>
             </div>
         );
